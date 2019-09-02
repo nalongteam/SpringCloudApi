@@ -12,6 +12,13 @@
     <groupId>com.market.service</groupId>
     <artifactId>mk-item</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.market.common</groupId>
+            <artifactId>mk-common</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
