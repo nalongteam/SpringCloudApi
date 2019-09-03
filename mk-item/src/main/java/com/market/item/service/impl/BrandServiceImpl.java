@@ -5,9 +5,11 @@ import com.github.pagehelper.PageHelper;
 import com.market.common.PageResult;
 import com.market.item.dto.requests.BrandRequest;
 import com.market.item.mapper.BrandMapper;
+import com.market.item.mapper.CategoryBrandMapper;
 import com.market.item.model.Brand;
+import com.market.item.model.CategoryBrandKey;
 import com.market.item.service.IBrandService;
-import com.market.utils.StringHelper;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,8 @@ import java.util.List;
 public class BrandServiceImpl implements IBrandService {
     @Autowired
     private BrandMapper brandMapper;
+    @Autowired
+    private CategoryBrandMapper categoryBrandMapper;
 
     @Override
     public PageResult<Brand> queryBrandByPageAndSort(Integer pageNum, Integer pageSize, String sortBy, Boolean desc, String key) {
@@ -32,12 +36,12 @@ public class BrandServiceImpl implements IBrandService {
         Page page= PageHelper.startPage(pageNum, pageSize,true);
 
         BrandRequest brandRequest=new BrandRequest();
-        if (!StringHelper.IsNullOrEmpety(sortBy)){
+        if (!StringUtils.isBlank(sortBy)){
             String sort=desc?"DESC":"ASC";
             PageHelper.orderBy(sortBy+" "+sort);
         }
 
-        if (!StringHelper.IsNullOrEmpety(key)){
+        if (!StringUtils.isBlank(key)){
             brandRequest.setQueryKey(key);
         }
 
@@ -48,5 +52,21 @@ public class BrandServiceImpl implements IBrandService {
         data.setItems(items);
 
         return data;
+    }
+
+    @Override
+    public int insert(Brand record) {
+        return brandMapper.insert(record);
+    }
+
+    @Override
+    public void saveBrand(Brand brand, List<Long> cids) {
+        brandMapper.insert(brand);
+        for (Long cid:cids) {
+            CategoryBrandKey categoryBrandKey=new CategoryBrandKey();
+            categoryBrandKey.setBrandId(brand.getId());
+            categoryBrandKey.setCategoryId(cid);
+            categoryBrandMapper.insert(categoryBrandKey);
+        }
     }
 }
