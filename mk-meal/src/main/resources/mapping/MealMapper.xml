@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.meal.mapper.MealMapper">
+  <resultMap id="BaseResultMap" type="com.market.meal.model.Meal">
+    <id column="setmealid" jdbcType="INTEGER" property="setmealid" />
+    <result column="merchantid" jdbcType="INTEGER" property="merchantid" />
+    <result column="setmealtype" jdbcType="VARCHAR" property="setmealtype" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="people" jdbcType="INTEGER" property="people" />
+    <result column="isorder" jdbcType="BIT" property="isorder" />
+    <result column="isrefund" jdbcType="BIT" property="isrefund" />
+    <result column="isinhouse" jdbcType="BIT" property="isinhouse" />
+    <result column="isnew" jdbcType="BIT" property="isnew" />
+    <result column="isrecommend" jdbcType="BIT" property="isrecommend" />
+    <result column="validdays" jdbcType="INTEGER" property="validdays" />
+    <result column="bargainers" jdbcType="INTEGER" property="bargainers" />
+    <result column="watchers" jdbcType="INTEGER" property="watchers" />
+    <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="tempprice" jdbcType="DECIMAL" property="tempprice" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="validtime" jdbcType="TIMESTAMP" property="validtime" />
+    <result column="exittime" jdbcType="TIMESTAMP" property="exittime" />
+    <result column="links" jdbcType="VARCHAR" property="links" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="adder" jdbcType="INTEGER" property="adder" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="moder" jdbcType="INTEGER" property="moder" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    setmealid, merchantid, setmealtype, title, people, isorder, isrefund, isinhouse, 
+    isnew, isrecommend, validdays, bargainers, watchers, totalprice, tempprice, createtime, 
+    validtime, exittime, links, cover, info, status, adder, addtime, moder, modtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from meal
+    where setmealid = #{setmealid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from meal
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from meal
+    where setmealid = #{setmealid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.market.meal.model.Meal">
+    insert into meal (setmealid, merchantid, setmealtype, 
+      title, people, isorder, 
+      isrefund, isinhouse, isnew, isrecommend, 
+      validdays, bargainers, watchers, 
+      totalprice, tempprice, createtime, 
+      validtime, exittime, links, 
+      cover, info, status, adder, 
+      addtime, moder, modtime
+      )
+    values (#{setmealid,jdbcType=INTEGER}, #{merchantid,jdbcType=INTEGER}, #{setmealtype,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{people,jdbcType=INTEGER}, #{isorder,jdbcType=BIT}, 
+      #{isrefund,jdbcType=BIT}, #{isinhouse,jdbcType=BIT}, #{isnew,jdbcType=BIT}, #{isrecommend,jdbcType=BIT}, 
+      #{validdays,jdbcType=INTEGER}, #{bargainers,jdbcType=INTEGER}, #{watchers,jdbcType=INTEGER}, 
+      #{totalprice,jdbcType=DECIMAL}, #{tempprice,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{validtime,jdbcType=TIMESTAMP}, #{exittime,jdbcType=TIMESTAMP}, #{links,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.market.meal.model.Meal">
+    insert into meal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="setmealid != null">
+        setmealid,
+      </if>
+      <if test="merchantid != null">
+        merchantid,
+      </if>
+      <if test="setmealtype != null">
+        setmealtype,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="people != null">
+        people,
+      </if>
+      <if test="isorder != null">
+        isorder,
+      </if>
+      <if test="isrefund != null">
+        isrefund,
+      </if>
+      <if test="isinhouse != null">
+        isinhouse,
+      </if>
+      <if test="isnew != null">
+        isnew,
+      </if>
+      <if test="isrecommend != null">
+        isrecommend,
+      </if>
+      <if test="validdays != null">
+        validdays,
+      </if>
+      <if test="bargainers != null">
+        bargainers,
+      </if>
+      <if test="watchers != null">
+        watchers,
+      </if>
+      <if test="totalprice != null">
+        totalprice,
+      </if>
+      <if test="tempprice != null">
+        tempprice,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="validtime != null">
+        validtime,
+      </if>
+      <if test="exittime != null">
+        exittime,
+      </if>
+      <if test="links != null">
+        links,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="adder != null">
+        adder,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="moder != null">
+        moder,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="setmealid != null">
+        #{setmealid,jdbcType=INTEGER},
+      </if>
+      <if test="merchantid != null">
+        #{merchantid,jdbcType=INTEGER},
+      </if>
+      <if test="setmealtype != null">
+        #{setmealtype,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null">
+        #{people,jdbcType=INTEGER},
+      </if>
+      <if test="isorder != null">
+        #{isorder,jdbcType=BIT},
+      </if>
+      <if test="isrefund != null">
+        #{isrefund,jdbcType=BIT},
+      </if>
+      <if test="isinhouse != null">
+        #{isinhouse,jdbcType=BIT},
+      </if>
+      <if test="isnew != null">
+        #{isnew,jdbcType=BIT},
+      </if>
+      <if test="isrecommend != null">
+        #{isrecommend,jdbcType=BIT},
+      </if>
+      <if test="validdays != null">
+        #{validdays,jdbcType=INTEGER},
+      </if>
+      <if test="bargainers != null">
+        #{bargainers,jdbcType=INTEGER},
+      </if>
+      <if test="watchers != null">
+        #{watchers,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="tempprice != null">
+        #{tempprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        #{validtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exittime != null">
+        #{exittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="links != null">
+        #{links,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.market.meal.model.Meal">
+    update meal
+    <set>
+      <if test="merchantid != null">
+        merchantid = #{merchantid,jdbcType=INTEGER},
+      </if>
+      <if test="setmealtype != null">
+        setmealtype = #{setmealtype,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null">
+        people = #{people,jdbcType=INTEGER},
+      </if>
+      <if test="isorder != null">
+        isorder = #{isorder,jdbcType=BIT},
+      </if>
+      <if test="isrefund != null">
+        isrefund = #{isrefund,jdbcType=BIT},
+      </if>
+      <if test="isinhouse != null">
+        isinhouse = #{isinhouse,jdbcType=BIT},
+      </if>
+      <if test="isnew != null">
+        isnew = #{isnew,jdbcType=BIT},
+      </if>
+      <if test="isrecommend != null">
+        isrecommend = #{isrecommend,jdbcType=BIT},
+      </if>
+      <if test="validdays != null">
+        validdays = #{validdays,jdbcType=INTEGER},
+      </if>
+      <if test="bargainers != null">
+        bargainers = #{bargainers,jdbcType=INTEGER},
+      </if>
+      <if test="watchers != null">
+        watchers = #{watchers,jdbcType=INTEGER},
+      </if>
+      <if test="totalprice != null">
+        totalprice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="tempprice != null">
+        tempprice = #{tempprice,jdbcType=DECIMAL},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validtime != null">
+        validtime = #{validtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exittime != null">
+        exittime = #{exittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="links != null">
+        links = #{links,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        adder = #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        moder = #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where setmealid = #{setmealid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.market.meal.model.Meal">
+    update meal
+    set merchantid = #{merchantid,jdbcType=INTEGER},
+      setmealtype = #{setmealtype,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      people = #{people,jdbcType=INTEGER},
+      isorder = #{isorder,jdbcType=BIT},
+      isrefund = #{isrefund,jdbcType=BIT},
+      isinhouse = #{isinhouse,jdbcType=BIT},
+      isnew = #{isnew,jdbcType=BIT},
+      isrecommend = #{isrecommend,jdbcType=BIT},
+      validdays = #{validdays,jdbcType=INTEGER},
+      bargainers = #{bargainers,jdbcType=INTEGER},
+      watchers = #{watchers,jdbcType=INTEGER},
+      totalprice = #{totalprice,jdbcType=DECIMAL},
+      tempprice = #{tempprice,jdbcType=DECIMAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      validtime = #{validtime,jdbcType=TIMESTAMP},
+      exittime = #{exittime,jdbcType=TIMESTAMP},
+      links = #{links,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      adder = #{adder,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      moder = #{moder,jdbcType=INTEGER},
+      modtime = #{modtime,jdbcType=TIMESTAMP}
+    where setmealid = #{setmealid,jdbcType=INTEGER}
+  </update>
+</mapper>

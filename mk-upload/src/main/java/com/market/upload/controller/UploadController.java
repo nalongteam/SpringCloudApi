@@ -28,7 +28,7 @@ public class UploadController {
 
     @PostMapping("image")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file){
-       String url=this.uploadServce.uploadByFastDFS(file);
+       String url=this.uploadServce.upload(file);
        if (StringUtils.isBlank(url)){
            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
        }

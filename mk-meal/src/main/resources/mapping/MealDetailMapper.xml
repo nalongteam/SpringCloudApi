@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.meal.mapper.MealDetailMapper">
+  <resultMap id="BaseResultMap" type="com.market.meal.model.MealDetail">
+    <id column="setmealdetailid" jdbcType="INTEGER" property="setmealdetailid" />
+    <result column="setmealid" jdbcType="INTEGER" property="setmealid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="nums" jdbcType="INTEGER" property="nums" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="adder" jdbcType="INTEGER" property="adder" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="moder" jdbcType="INTEGER" property="moder" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    setmealdetailid, setmealid, name, nums, price, totalprice, status, adder, addtime, 
+    moder, modtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from meal_detail
+    where setmealdetailid = #{setmealdetailid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from meal_detail
+    where setmealdetailid = #{setmealdetailid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.market.meal.model.MealDetail">
+    insert into meal_detail (setmealdetailid, setmealid, name, 
+      nums, price, totalprice, 
+      status, adder, addtime, 
+      moder, modtime)
+    values (#{setmealdetailid,jdbcType=INTEGER}, #{setmealid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{nums,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{totalprice,jdbcType=DECIMAL}, 
+      #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.market.meal.model.MealDetail">
+    insert into meal_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="setmealdetailid != null">
+        setmealdetailid,
+      </if>
+      <if test="setmealid != null">
+        setmealid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="nums != null">
+        nums,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="totalprice != null">
+        totalprice,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="adder != null">
+        adder,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="moder != null">
+        moder,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="setmealdetailid != null">
+        #{setmealdetailid,jdbcType=INTEGER},
+      </if>
+      <if test="setmealid != null">
+        #{setmealid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null">
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null">
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.market.meal.model.MealDetail">
+    update meal_detail
+    <set>
+      <if test="setmealid != null">
+        setmealid = #{setmealid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null">
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null">
+        totalprice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        adder = #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        moder = #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where setmealdetailid = #{setmealdetailid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.market.meal.model.MealDetail">
+    update meal_detail
+    set setmealid = #{setmealid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      nums = #{nums,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      totalprice = #{totalprice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=BIT},
+      adder = #{adder,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      moder = #{moder,jdbcType=INTEGER},
+      modtime = #{modtime,jdbcType=TIMESTAMP}
+    where setmealdetailid = #{setmealdetailid,jdbcType=INTEGER}
+  </update>
+  <select id="selectBySetmealid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from meal_detail
+    where setmealid = #{setmealid,jdbcType=INTEGER}
+  </select>
+</mapper>
