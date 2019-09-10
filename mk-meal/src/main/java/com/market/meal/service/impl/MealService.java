@@ -6,7 +6,6 @@ import com.market.common.PageResult;
 import com.market.meal.mapper.MealMapper;
 import com.market.meal.model.Meal;
 import com.market.meal.service.IMealService;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -14,9 +14,11 @@
     <result column="isrecommend" jdbcType="BIT" property="isrecommend" />
     <result column="validdays" jdbcType="INTEGER" property="validdays" />
     <result column="bargainers" jdbcType="INTEGER" property="bargainers" />
+    <result column="totalbargainers" jdbcType="INTEGER" property="totalbargainers" />
     <result column="watchers" jdbcType="INTEGER" property="watchers" />
     <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
     <result column="tempprice" jdbcType="DECIMAL" property="tempprice" />
+    <result column="minprice" jdbcType="DECIMAL" property="minprice" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="validtime" jdbcType="TIMESTAMP" property="validtime" />
     <result column="exittime" jdbcType="TIMESTAMP" property="exittime" />
@@ -31,8 +33,9 @@
   </resultMap>
   <sql id="Base_Column_List">
     setmealid, merchantid, setmealtype, title, people, isorder, isrefund, isinhouse, 
-    isnew, isrecommend, validdays, bargainers, watchers, totalprice, tempprice, createtime, 
-    validtime, exittime, links, cover, info, status, adder, addtime, moder, modtime
+    isnew, isrecommend, validdays, bargainers, totalbargainers, watchers, totalprice, 
+    tempprice, minprice, createtime, validtime, exittime, links, cover, info, status, 
+    adder, addtime, moder, modtime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -53,21 +56,21 @@
     insert into meal (setmealid, merchantid, setmealtype, 
       title, people, isorder, 
       isrefund, isinhouse, isnew, isrecommend, 
-      validdays, bargainers, watchers, 
-      totalprice, tempprice, createtime, 
-      validtime, exittime, links, 
-      cover, info, status, adder, 
-      addtime, moder, modtime
-      )
+      validdays, bargainers, totalbargainers, 
+      watchers, totalprice, tempprice, 
+      minprice, createtime, validtime, 
+      exittime, links, cover, 
+      info, status, adder, addtime, 
+      moder, modtime)
     values (#{setmealid,jdbcType=INTEGER}, #{merchantid,jdbcType=INTEGER}, #{setmealtype,jdbcType=VARCHAR}, 
       #{title,jdbcType=VARCHAR}, #{people,jdbcType=INTEGER}, #{isorder,jdbcType=BIT}, 
       #{isrefund,jdbcType=BIT}, #{isinhouse,jdbcType=BIT}, #{isnew,jdbcType=BIT}, #{isrecommend,jdbcType=BIT}, 
-      #{validdays,jdbcType=INTEGER}, #{bargainers,jdbcType=INTEGER}, #{watchers,jdbcType=INTEGER}, 
-      #{totalprice,jdbcType=DECIMAL}, #{tempprice,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{validtime,jdbcType=TIMESTAMP}, #{exittime,jdbcType=TIMESTAMP}, #{links,jdbcType=VARCHAR}, 
-      #{cover,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
-      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
-      )
+      #{validdays,jdbcType=INTEGER}, #{bargainers,jdbcType=INTEGER}, #{totalbargainers,jdbcType=INTEGER}, 
+      #{watchers,jdbcType=INTEGER}, #{totalprice,jdbcType=DECIMAL}, #{tempprice,jdbcType=DECIMAL}, 
+      #{minprice,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{validtime,jdbcType=TIMESTAMP}, 
+      #{exittime,jdbcType=TIMESTAMP}, #{links,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{info,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
+      #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.market.meal.model.Meal">
     insert into meal
@@ -108,6 +111,9 @@
       <if test="bargainers != null">
         bargainers,
       </if>
+      <if test="totalbargainers != null">
+        totalbargainers,
+      </if>
       <if test="watchers != null">
         watchers,
       </if>
@@ -116,6 +122,9 @@
       </if>
       <if test="tempprice != null">
         tempprice,
+      </if>
+      <if test="minprice != null">
+        minprice,
       </if>
       <if test="createtime != null">
         createtime,
@@ -188,6 +197,9 @@
       <if test="bargainers != null">
         #{bargainers,jdbcType=INTEGER},
       </if>
+      <if test="totalbargainers != null">
+        #{totalbargainers,jdbcType=INTEGER},
+      </if>
       <if test="watchers != null">
         #{watchers,jdbcType=INTEGER},
       </if>
@@ -196,6 +208,9 @@
       </if>
       <if test="tempprice != null">
         #{tempprice,jdbcType=DECIMAL},
+      </if>
+      <if test="minprice != null">
+        #{minprice,jdbcType=DECIMAL},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -268,6 +283,9 @@
       <if test="bargainers != null">
         bargainers = #{bargainers,jdbcType=INTEGER},
       </if>
+      <if test="totalbargainers != null">
+        totalbargainers = #{totalbargainers,jdbcType=INTEGER},
+      </if>
       <if test="watchers != null">
         watchers = #{watchers,jdbcType=INTEGER},
       </if>
@@ -276,6 +294,9 @@
       </if>
       <if test="tempprice != null">
         tempprice = #{tempprice,jdbcType=DECIMAL},
+      </if>
+      <if test="minprice != null">
+        minprice = #{minprice,jdbcType=DECIMAL},
       </if>
       <if test="createtime != null">
         createtime = #{createtime,jdbcType=TIMESTAMP},
@@ -326,9 +347,11 @@
       isrecommend = #{isrecommend,jdbcType=BIT},
       validdays = #{validdays,jdbcType=INTEGER},
       bargainers = #{bargainers,jdbcType=INTEGER},
+      totalbargainers = #{totalbargainers,jdbcType=INTEGER},
       watchers = #{watchers,jdbcType=INTEGER},
       totalprice = #{totalprice,jdbcType=DECIMAL},
       tempprice = #{tempprice,jdbcType=DECIMAL},
+      minprice = #{minprice,jdbcType=DECIMAL},
       createtime = #{createtime,jdbcType=TIMESTAMP},
       validtime = #{validtime,jdbcType=TIMESTAMP},
       exittime = #{exittime,jdbcType=TIMESTAMP},
