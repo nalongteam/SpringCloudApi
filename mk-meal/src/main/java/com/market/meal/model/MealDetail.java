@@ -14,6 +14,8 @@ public class MealDetail {
 
     private BigDecimal price;
 
+    private String image;
+
     private BigDecimal totalprice;
 
     private Boolean status;
@@ -64,6 +66,14 @@ public class MealDetail {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image == null ? null : image.trim();
     }
 
     public BigDecimal getTotalprice() {

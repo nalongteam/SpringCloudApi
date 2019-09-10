@@ -7,6 +7,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="nums" jdbcType="INTEGER" property="nums" />
     <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="totalprice" jdbcType="DECIMAL" property="totalprice" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="adder" jdbcType="INTEGER" property="adder" />
@@ -15,8 +16,8 @@
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    setmealdetailid, setmealid, name, nums, price, totalprice, status, adder, addtime, 
-    moder, modtime
+    setmealdetailid, setmealid, name, nums, price, image, totalprice, status, adder, 
+    addtime, moder, modtime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,13 +31,15 @@
   </delete>
   <insert id="insert" parameterType="com.market.meal.model.MealDetail">
     insert into meal_detail (setmealdetailid, setmealid, name, 
-      nums, price, totalprice, 
-      status, adder, addtime, 
-      moder, modtime)
+      nums, price, image, 
+      totalprice, status, adder, 
+      addtime, moder, modtime
+      )
     values (#{setmealdetailid,jdbcType=INTEGER}, #{setmealid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{nums,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{totalprice,jdbcType=DECIMAL}, 
-      #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, #{addtime,jdbcType=TIMESTAMP}, 
-      #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP})
+      #{nums,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{image,jdbcType=VARCHAR}, 
+      #{totalprice,jdbcType=DECIMAL}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.market.meal.model.MealDetail">
     insert into meal_detail
@@ -55,6 +58,9 @@
       </if>
       <if test="price != null">
         price,
+      </if>
+      <if test="image != null">
+        image,
       </if>
       <if test="totalprice != null">
         totalprice,
@@ -91,6 +97,9 @@
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
       </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
       <if test="totalprice != null">
         #{totalprice,jdbcType=DECIMAL},
       </if>
@@ -126,6 +135,9 @@
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
       </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
       <if test="totalprice != null">
         totalprice = #{totalprice,jdbcType=DECIMAL},
       </if>
@@ -153,6 +165,7 @@
       name = #{name,jdbcType=VARCHAR},
       nums = #{nums,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
+      image = #{image,jdbcType=VARCHAR},
       totalprice = #{totalprice,jdbcType=DECIMAL},
       status = #{status,jdbcType=BIT},
       adder = #{adder,jdbcType=INTEGER},
