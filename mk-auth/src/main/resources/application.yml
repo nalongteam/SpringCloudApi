@@ -1,0 +1,29 @@
+server:
+  port: 10002
+spring:
+  application:
+    name: auth-service
+  servlet:
+    multipart:
+      max-file-size: 5MB # 限制文件上传的大小
+# Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:9001/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5 # 每隔5秒发送一次心跳
+    lease-expiration-duration-in-seconds: 10 # 10秒不发送就过期
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    instance-id: ${spring.application.name}:${server.port}
+
+
+mk:
+  jwt:
+    secret: mk@zwl!!568633995 # 登录校验的密钥
+    pubKeyPath: C:/tmp/rsa/rsa.pub # 公钥地址
+    priKeyPath: C:/tmp/rsa/rsa.pri # 私钥地址
+    expire: 30 # 过期时间,单位分钟
+    cookieMaxAge: 1800
+    cookieName: MK_TOKEN

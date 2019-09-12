@@ -1,4 +1,4 @@
-package com.market.meal;
+package com.market.user;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -7,18 +7,18 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * @ClassName MealApplication
+ * @ClassName UserApplication
  * @Description: TODO
  * @Author zhengweilin
- * @Date 2019/9/6
+ * @Date 2019/9/11
  * @Version V1.0
  **/
 @SpringBootApplication
 @EnableSwagger2
 @EnableEurekaClient
-@MapperScan("com.market.meal.mapper")
-public class MealApplication {
+@MapperScan("com.market.user.mapper")
+public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MealApplication.class,args);
+        SpringApplication.run(UserApplication.class,args);
     }
 }

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.order.mapper.OrderCommentMapper">
+  <resultMap id="BaseResultMap" type="com.market.order.model.OrderComment">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <result column="guestid" jdbcType="INTEGER" property="guestid" />
+    <result column="mealid" jdbcType="VARCHAR" property="mealid" />
+    <result column="star" jdbcType="INTEGER" property="star" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="images" jdbcType="VARCHAR" property="images" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="adder" jdbcType="INTEGER" property="adder" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="moder" jdbcType="INTEGER" property="moder" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, orderid, guestid, mealid, star, info, images, status, adder, addtime, moder, 
+    modtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.market.order.model.OrderComment">
+    insert into order_comment (id, orderid, guestid, 
+      mealid, star, info, 
+      images, status, adder, 
+      addtime, moder, modtime
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{guestid,jdbcType=INTEGER}, 
+      #{mealid,jdbcType=VARCHAR}, #{star,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}, 
+      #{images,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.market.order.model.OrderComment">
+    insert into order_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderid != null">
+        orderid,
+      </if>
+      <if test="guestid != null">
+        guestid,
+      </if>
+      <if test="mealid != null">
+        mealid,
+      </if>
+      <if test="star != null">
+        star,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="adder != null">
+        adder,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="moder != null">
+        moder,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderid != null">
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="guestid != null">
+        #{guestid,jdbcType=INTEGER},
+      </if>
+      <if test="mealid != null">
+        #{mealid,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.market.order.model.OrderComment">
+    update order_comment
+    <set>
+      <if test="orderid != null">
+        orderid = #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="guestid != null">
+        guestid = #{guestid,jdbcType=INTEGER},
+      </if>
+      <if test="mealid != null">
+        mealid = #{mealid,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null">
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        adder = #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        moder = #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.market.order.model.OrderComment">
+    update order_comment
+    set orderid = #{orderid,jdbcType=INTEGER},
+      guestid = #{guestid,jdbcType=INTEGER},
+      mealid = #{mealid,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      info = #{info,jdbcType=VARCHAR},
+      images = #{images,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      adder = #{adder,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      moder = #{moder,jdbcType=INTEGER},
+      modtime = #{modtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByMealid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from order_comment
+    where mealid = #{mealid,jdbcType=INTEGER}
+  </select>
+</mapper>

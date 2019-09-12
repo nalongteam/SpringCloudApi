@@ -1,8 +1,19 @@
 package com.market.meal.controller;
 
+import com.market.meal.service.IMealService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.constraints.Null;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * @ClassName MealActionController
@@ -15,4 +26,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("mealaction")
 public class MealActionController {
+    @Autowired
+    private IMealService mealService;
+
+    @PostMapping("addwatchers")
+    @ApiOperation(value="添加今日关注人数")
+    public ResponseEntity<Boolean> AddWatchers(@RequestParam Integer setmealid){
+          Boolean isOk=mealService.addWatchersBySetMealid(setmealid);
+          return ResponseEntity.ok(isOk);
+    }
+
+    @PostMapping("bargains")
+    @ApiOperation(value="砍价")
+    public ResponseEntity<BigDecimal> Bargains(@RequestParam Integer setmealid){
+        BigDecimal decimal= mealService.bargains(setmealid);
+        return ResponseEntity.ok(decimal);
+    }
 }

@@ -9,6 +9,10 @@
         <module>mk-common</module>
         <module>mk-upload</module>
         <module>mk-meal</module>
+        <module>mk-user</module>
+        <module>mk-order</module>
+        <module>mk-sms</module>
+        <module>mk-auth</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

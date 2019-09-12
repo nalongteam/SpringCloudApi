@@ -15,7 +15,7 @@ public class DefaultReduceRule implements ReduceRule {
     @Override
     public BigDecimal getReduce(BigDecimal totalReduce, BigDecimal leftReduce, int totalReduceTimes, int leftReduceTimes, int scale) {
         if (leftReduceTimes <= 0) {
-            throw new IllegalArgumentException("leftReduceTimes should gte 1");
+            return new BigDecimal(0);
         }
         if (leftReduceTimes == 1) {
             return leftReduce;

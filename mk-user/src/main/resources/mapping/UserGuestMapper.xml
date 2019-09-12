@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.user.mapper.UserGuestMapper">
+  <resultMap id="BaseResultMap" type="com.market.user.model.UserGuest">
+    <id column="guestid" jdbcType="INTEGER" property="guestid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="photo" jdbcType="VARCHAR" property="photo" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="golds" jdbcType="INTEGER" property="golds" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="adder" jdbcType="INTEGER" property="adder" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="moder" jdbcType="INTEGER" property="moder" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    guestid, name, photo, nickname, wechat, password, phone, golds, status, adder, addtime, 
+    moder, modtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_guest
+    where guestid = #{guestid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_guest
+    where guestid = #{guestid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.market.user.model.UserGuest">
+    insert into user_guest (guestid, name, photo, 
+      nickname, wechat, password, 
+      phone, golds, status, adder, 
+      addtime, moder, modtime
+      )
+    values (#{guestid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{golds,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.market.user.model.UserGuest">
+    insert into user_guest
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="guestid != null">
+        guestid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="photo != null">
+        photo,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="golds != null">
+        golds,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="adder != null">
+        adder,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="moder != null">
+        moder,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="guestid != null">
+        #{guestid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="golds != null">
+        #{golds,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.market.user.model.UserGuest">
+    update user_guest
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="photo != null">
+        photo = #{photo,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="golds != null">
+        golds = #{golds,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="adder != null">
+        adder = #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        moder = #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where guestid = #{guestid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.market.user.model.UserGuest">
+    update user_guest
+    set name = #{name,jdbcType=VARCHAR},
+      photo = #{photo,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      golds = #{golds,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      adder = #{adder,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      moder = #{moder,jdbcType=INTEGER},
+      modtime = #{modtime,jdbcType=TIMESTAMP}
+    where guestid = #{guestid,jdbcType=INTEGER}
+  </update>
+</mapper>

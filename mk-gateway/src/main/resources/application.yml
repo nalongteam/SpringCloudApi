@@ -13,14 +13,19 @@ eureka:
     ip-address: 127.0.0.1
     instance-id: ${spring.application.name}:${server.port}
 zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时需要比Hystrix的大
+    socket-timeout-millis: 60000 #socket超时
   prefix: /api # 添加路由前缀
   retryable: true
   routes:
-    meal-service: /meal/** # 将商品微服务映射到/meal/**
+    meal-service: /meal/**
+    order-service: /order/**
+    user-service: /user/**
     upload-service: /**
 ribbon:
-  ConnectTimeout: 250 # 连接超时时间(ms)
-  ReadTimeout: 2000 # 通信超时时间(ms)
+  ConnectTimeout: 10000 # 连接超时时间(ms)
+  ReadTimeout: 10000 # 通信超时时间(ms)
   OkToRetryOnAllOperations: true # 是否对所有操作重试
   MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
   MaxAutoRetries: 1 # 同一实例的重试次数

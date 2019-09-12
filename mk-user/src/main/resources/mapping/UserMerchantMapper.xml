@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.user.mapper.UserMerchantMapper">
+  <resultMap id="BaseResultMap" type="com.market.user.model.UserMerchant">
+    <id column="merchantid" jdbcType="INTEGER" property="merchantid" />
+    <result column="merchantname" jdbcType="VARCHAR" property="merchantname" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="longtitude" jdbcType="VARCHAR" property="longtitude" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="adder" jdbcType="INTEGER" property="adder" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="moder" jdbcType="INTEGER" property="moder" />
+    <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    merchantid, merchantname, province, city, district, address, wechat, phone, status, 
+    longtitude, latitude, adder, addtime, moder, modtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_merchant
+    where merchantid = #{merchantid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_merchant
+    where merchantid = #{merchantid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.market.user.model.UserMerchant">
+    insert into user_merchant (merchantid, merchantname, province, 
+      city, district, address, 
+      wechat, phone, status, 
+      longtitude, latitude, adder, 
+      addtime, moder, modtime
+      )
+    values (#{merchantid,jdbcType=INTEGER}, #{merchantname,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{district,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{wechat,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, 
+      #{longtitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{adder,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.market.user.model.UserMerchant">
+    insert into user_merchant
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchantid != null">
+        merchantid,
+      </if>
+      <if test="merchantname != null">
+        merchantname,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="longtitude != null">
+        longtitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="adder != null">
+        adder,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="moder != null">
+        moder,
+      </if>
+      <if test="modtime != null">
+        modtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchantid != null">
+        #{merchantid,jdbcType=INTEGER},
+      </if>
+      <if test="merchantname != null">
+        #{merchantname,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="longtitude != null">
+        #{longtitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="adder != null">
+        #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.market.user.model.UserMerchant">
+    update user_merchant
+    <set>
+      <if test="merchantname != null">
+        merchantname = #{merchantname,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="longtitude != null">
+        longtitude = #{longtitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="adder != null">
+        adder = #{adder,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="moder != null">
+        moder = #{moder,jdbcType=INTEGER},
+      </if>
+      <if test="modtime != null">
+        modtime = #{modtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where merchantid = #{merchantid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.market.user.model.UserMerchant">
+    update user_merchant
+    set merchantname = #{merchantname,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      wechat = #{wechat,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=BIT},
+      longtitude = #{longtitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      adder = #{adder,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      moder = #{moder,jdbcType=INTEGER},
+      modtime = #{modtime,jdbcType=TIMESTAMP}
+    where merchantid = #{merchantid,jdbcType=INTEGER}
+  </update>
+</mapper>
