@@ -13,8 +13,9 @@ import org.springframework.stereotype.Component;
  **/
 @Component
 public class UserGuestFallBack implements UserGuestClient {
+
     @Override
-    public UserGuest selectByPrimaryKey(Integer guestid) {
+    public UserGuest selectUserByNameAndPassword(String name, String password) {
         return null;
     }
 }

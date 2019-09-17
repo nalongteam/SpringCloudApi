@@ -2,8 +2,6 @@ package com.market.auth.config;
 
 import com.market.auth.until.RsaUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.security.PrivateKey;

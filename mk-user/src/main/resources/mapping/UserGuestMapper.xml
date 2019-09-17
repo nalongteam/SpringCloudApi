@@ -4,12 +4,14 @@
   <resultMap id="BaseResultMap" type="com.market.user.model.UserGuest">
     <id column="guestid" jdbcType="INTEGER" property="guestid" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="photo" jdbcType="VARCHAR" property="photo" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="wechat" jdbcType="VARCHAR" property="wechat" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="golds" jdbcType="INTEGER" property="golds" />
+    <result column="Ismerchant" jdbcType="BIT" property="ismerchant" />
+    <result column="merchantid" jdbcType="INTEGER" property="merchantid" />
     <result column="status" jdbcType="BIT" property="status" />
     <result column="adder" jdbcType="INTEGER" property="adder" />
     <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
@@ -17,8 +19,8 @@
     <result column="modtime" jdbcType="TIMESTAMP" property="modtime" />
   </resultMap>
   <sql id="Base_Column_List">
-    guestid, name, photo, nickname, wechat, password, phone, golds, status, adder, addtime, 
-    moder, modtime
+    guestid, name, password, photo, nickname, wechat, phone, golds, Ismerchant, merchantid, 
+    status, adder, addtime, moder, modtime
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -31,14 +33,16 @@
     where guestid = #{guestid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.market.user.model.UserGuest">
-    insert into user_guest (guestid, name, photo, 
-      nickname, wechat, password, 
-      phone, golds, status, adder, 
+    insert into user_guest (guestid, name, password, 
+      photo, nickname, wechat, 
+      phone, golds, Ismerchant, 
+      merchantid, status, adder, 
       addtime, moder, modtime
       )
-    values (#{guestid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{golds,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
+    values (#{guestid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{photo,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{golds,jdbcType=INTEGER}, #{ismerchant,jdbcType=BIT}, 
+      #{merchantid,jdbcType=INTEGER}, #{status,jdbcType=BIT}, #{adder,jdbcType=INTEGER}, 
       #{addtime,jdbcType=TIMESTAMP}, #{moder,jdbcType=INTEGER}, #{modtime,jdbcType=TIMESTAMP}
       )
   </insert>
@@ -51,6 +55,9 @@
       <if test="name != null">
         name,
       </if>
+      <if test="password != null">
+        password,
+      </if>
       <if test="photo != null">
         photo,
       </if>
@@ -60,14 +67,17 @@
       <if test="wechat != null">
         wechat,
       </if>
-      <if test="password != null">
-        password,
-      </if>
       <if test="phone != null">
         phone,
       </if>
       <if test="golds != null">
         golds,
+      </if>
+      <if test="ismerchant != null">
+        Ismerchant,
+      </if>
+      <if test="merchantid != null">
+        merchantid,
       </if>
       <if test="status != null">
         status,
@@ -92,6 +102,9 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
       <if test="photo != null">
         #{photo,jdbcType=VARCHAR},
       </if>
@@ -101,14 +114,17 @@
       <if test="wechat != null">
         #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
       <if test="phone != null">
         #{phone,jdbcType=VARCHAR},
       </if>
       <if test="golds != null">
         #{golds,jdbcType=INTEGER},
+      </if>
+      <if test="ismerchant != null">
+        #{ismerchant,jdbcType=BIT},
+      </if>
+      <if test="merchantid != null">
+        #{merchantid,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=BIT},
@@ -133,6 +149,9 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
       <if test="photo != null">
         photo = #{photo,jdbcType=VARCHAR},
       </if>
@@ -142,14 +161,17 @@
       <if test="wechat != null">
         wechat = #{wechat,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
       <if test="phone != null">
         phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="golds != null">
         golds = #{golds,jdbcType=INTEGER},
+      </if>
+      <if test="ismerchant != null">
+        Ismerchant = #{ismerchant,jdbcType=BIT},
+      </if>
+      <if test="merchantid != null">
+        merchantid = #{merchantid,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=BIT},
@@ -172,12 +194,14 @@
   <update id="updateByPrimaryKey" parameterType="com.market.user.model.UserGuest">
     update user_guest
     set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
       photo = #{photo,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       wechat = #{wechat,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       golds = #{golds,jdbcType=INTEGER},
+      Ismerchant = #{ismerchant,jdbcType=BIT},
+      merchantid = #{merchantid,jdbcType=INTEGER},
       status = #{status,jdbcType=BIT},
       adder = #{adder,jdbcType=INTEGER},
       addtime = #{addtime,jdbcType=TIMESTAMP},
@@ -185,4 +209,10 @@
       modtime = #{modtime,jdbcType=TIMESTAMP}
     where guestid = #{guestid,jdbcType=INTEGER}
   </update>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_guest
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
 </mapper>

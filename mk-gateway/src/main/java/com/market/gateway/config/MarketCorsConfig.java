@@ -1,4 +1,4 @@
-package com.market.config;
+package com.market.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

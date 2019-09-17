@@ -1,4 +1,4 @@
-package com.market.auth.enity;
+package com.market.entity;
 
 public class UserInfo {
 

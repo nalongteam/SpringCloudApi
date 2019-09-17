@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(value = "user-service",fallback = UserGuestFallBack.class)
 public interface UserGuestClient {
-    @RequestMapping(value = "/userguest/getuserguestbyguestid", method= RequestMethod.GET)
-    UserGuest selectByPrimaryKey(@RequestParam Integer guestid);
+    @RequestMapping(value = "/userguest/selectuserbynameandpassword", method= RequestMethod.GET)
+    UserGuest selectUserByNameAndPassword(@RequestParam String name,@RequestParam String password);
 }

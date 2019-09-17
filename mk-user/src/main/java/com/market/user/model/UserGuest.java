@@ -7,17 +7,21 @@ public class UserGuest {
 
     private String name;
 
+    private String password;
+
     private String photo;
 
     private String nickname;
 
     private String wechat;
 
-    private String password;
-
     private String phone;
 
     private Integer golds;
+
+    private Boolean ismerchant;
+
+    private Integer merchantid;
 
     private Boolean status;
 
@@ -45,6 +49,14 @@ public class UserGuest {
         this.name = name == null ? null : name.trim();
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
     public String getPhoto() {
         return photo;
     }
@@ -69,14 +81,6 @@ public class UserGuest {
         this.wechat = wechat == null ? null : wechat.trim();
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -91,6 +95,22 @@ public class UserGuest {
 
     public void setGolds(Integer golds) {
         this.golds = golds;
+    }
+
+    public Boolean getIsmerchant() {
+        return ismerchant;
+    }
+
+    public void setIsmerchant(Boolean ismerchant) {
+        this.ismerchant = ismerchant;
+    }
+
+    public Integer getMerchantid() {
+        return merchantid;
+    }
+
+    public void setMerchantid(Integer merchantid) {
+        this.merchantid = merchantid;
     }
 
     public Boolean getStatus() {

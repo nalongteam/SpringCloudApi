@@ -14,4 +14,6 @@ public interface UserGuestMapper {
     int updateByPrimaryKeySelective(UserGuest record);
 
     int updateByPrimaryKey(UserGuest record);
+
+    UserGuest selectByName(String name);
 }

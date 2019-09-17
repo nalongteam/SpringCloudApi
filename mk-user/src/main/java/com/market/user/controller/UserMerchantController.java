@@ -1,8 +1,7 @@
 package com.market.user.controller;
 
-import com.market.user.model.UserGuest;
-import com.market.user.model.UserMerchant;
-import com.market.user.service.IUserMerchantService;
+import com.market.user.model.UserMerchantInfo;
+import com.market.user.service.IUserMerchantInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("usermerchant")
-@Api("用户-卖家")
+@Api(tags = "商家信息")
 public class UserMerchantController {
     @Autowired
-    private IUserMerchantService userMerchantService;
+    private IUserMerchantInfoService userMerchantService;
 
     @GetMapping("getusermerchantbymerchantid")
     @ApiOperation(value="根据商户id获取商户信息")
-    public ResponseEntity<UserMerchant> getUserMerchantByGuestid(@RequestParam Integer merchantid){
-        UserMerchant userMerchant=userMerchantService.selectByPrimaryKey(merchantid);
+    public ResponseEntity<UserMerchantInfo> getUserMerchantByGuestid(@RequestParam Integer merchantid){
+        UserMerchantInfo userMerchant=userMerchantService.selectByPrimaryKey(merchantid);
         return ResponseEntity.ok(userMerchant);
     }
 }

@@ -2,7 +2,7 @@ package com.market.user.model;
 
 import java.util.Date;
 
-public class UserMerchant {
+public class UserMerchantInfo {
     private Integer merchantid;
 
     private String merchantname;
@@ -15,15 +15,11 @@ public class UserMerchant {
 
     private String address;
 
-    private String wechat;
-
-    private String phone;
-
-    private Boolean status;
-
     private String longtitude;
 
     private String latitude;
+
+    private Boolean status;
 
     private Integer adder;
 
@@ -81,30 +77,6 @@ public class UserMerchant {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getWechat() {
-        return wechat;
-    }
-
-    public void setWechat(String wechat) {
-        this.wechat = wechat == null ? null : wechat.trim();
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone == null ? null : phone.trim();
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
     public String getLongtitude() {
         return longtitude;
     }
@@ -119,6 +91,14 @@ public class UserMerchant {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude == null ? null : latitude.trim();
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public Integer getAdder() {
